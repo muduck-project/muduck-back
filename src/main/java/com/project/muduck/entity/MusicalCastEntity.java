@@ -24,4 +24,5 @@ public class MusicalCastEntity {
     private Integer musicalId;
     private String castName;
     private String castImage;
+    private String musicals;
 }
