@@ -52,22 +52,21 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(request -> request
 
                                 
-                                .requestMatchers("/", "/api/v1/auth/sign-in/*", "/api/v1/auth/**", "/file/*", "/api/v1/recruit/*/comments", "/api/v1/active","/api/v1/active/*/comments",
-                                                "/upload/*","/find-id/*", "/send-auth/*","/api/v1/recruit","/api/v1/recruit/**","/api/v1/recruit/join/*","/api/v1/qna","/api/v1/qna/*","/api/v1/qna/*/comments",
-                                                "/api/v1/active/*", "/oauth2/callback/*","/reports", "/password-send-auth","./file", "./upload","/api/v1/active/like/*",
-                                                "/api/v1/recruit/iscompleted/*", "/api/v1/recruit/scrap", "/api/v1/recruit/scrap/*", "/api/v1/follow", "/api/v1/follow/**", "/api/v1/recruit/cityPostCounts").permitAll()
+                                .requestMatchers("/", "/api/v1/auth/sign-in/*", "/api/v1/auth/**",
+                                                "/send-auth/*",
+                                                "/oauth2/callback/*","/password-send-auth").permitAll()
                                 .requestMatchers("/api/v1/user/**").hasRole("USER")
                                 .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                                 .anyRequest().authenticated())
                 .exceptionHandling(exceptionHandling -> exceptionHandling
                                 .authenticationEntryPoint(new FailedAuthenticationEntryPoint()))
                 // oAuth2 로그인 적용
-                .oauth2Login(oauth2 -> oauth2
-                                .redirectionEndpoint(endpoint -> endpoint.baseUri("/oauth2/callback/*"))
-                                .authorizationEndpoint(endpoint -> endpoint
-                                    .baseUri("/api/v1/auth/sns-sign-in"))
-                                .userInfoEndpoint(endpoint -> endpoint.userService(oAuth2Service))
-                                .successHandler(oAuth2SuccessHandler))
+                // .oauth2Login(oauth2 -> oauth2
+                //                 .redirectionEndpoint(endpoint -> endpoint.baseUri("/oauth2/callback/*"))
+                //                 .authorizationEndpoint(endpoint -> endpoint
+                //                 .baseUri("/api/v1/auth/sns-sign-in"))
+                //                 .userInfoEndpoint(endpoint -> endpoint.userService(oAuth2Service))
+                //                 .successHandler(oAuth2SuccessHandler))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
                 return httpSecurity.build();
