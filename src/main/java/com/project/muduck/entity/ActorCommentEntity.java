@@ -14,8 +14,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "actor_appears")
-@Table(name = "actor_appears")
+@Entity(name = "actor_comments")
+@Table(name = "actor_comments")
 public class ActorCommentEntity {
 
     @Id

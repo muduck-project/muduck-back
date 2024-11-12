@@ -3,7 +3,7 @@ package com.project.muduck.dto.response;
 public interface ResponseMessage {
     String SUCCESS = "Success.";
 
-    String VALIDATION_FAIL = "Validation failed.";
+    String VALIDATION_FAILED = "Validation failed.";
     String DUPLICATED_USER_ID = "Duplicated user id.";
     String DUPLICATED_TEL_NUMBER = "Duplicated user tel number.";
 
