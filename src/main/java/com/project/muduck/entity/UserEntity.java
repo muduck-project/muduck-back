@@ -1,5 +1,7 @@
 package com.project.muduck.entity;
 
+import com.project.muduck.dto.request.auth.SignUpRequestDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -22,10 +24,18 @@ public class UserEntity {
     private String name;
     private String telNumber;
     private String address;
-    private String joinPath;
+    private String joinPath = "home";
     private String snsId;
     private Boolean isAdmin = false;
     private String profilePicture;
 
+    public UserEntity(SignUpRequestDto dto) {
+        this.userId = dto.getUserId();
+        this.password = dto.getPassword();
+        this.name = dto.getName();
+        this.telNumber = dto.getTelNumber();
+        this.address = dto.getAddress();
+        this.joinPath = dto.getJoinPath();
+    }
 
 }
