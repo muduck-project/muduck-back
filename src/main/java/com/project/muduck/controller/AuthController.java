@@ -8,12 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.muduck.dto.request.auth.FindIdRequestDto;
+import com.project.muduck.dto.request.auth.FindPasswordRequestDto;
+import com.project.muduck.dto.request.auth.FindTelNumberRequestDto;
 import com.project.muduck.dto.request.auth.IdCheckRequestDto;
+import com.project.muduck.dto.request.auth.IdTelNumberRequestDto;
 import com.project.muduck.dto.request.auth.SignInRequestDto;
 import com.project.muduck.dto.request.auth.SignUpRequestDto;
 import com.project.muduck.dto.request.auth.TelAuthCheckRequestDto;
 import com.project.muduck.dto.request.auth.TelAuthRequsetDto;
 import com.project.muduck.dto.response.ResponseDto;
+import com.project.muduck.dto.response.auth.FindIdResponseDto;
+import com.project.muduck.dto.response.auth.FindPasswordResponseDto;
 import com.project.muduck.dto.response.auth.SignInResponseDto;
 import com.project.muduck.service.AuthService;
 import com.project.muduck.service.UserService;
@@ -58,6 +64,38 @@ public class AuthController {
         @RequestBody @Valid SignInRequestDto requestBody
     ) {
         ResponseEntity<? super SignInResponseDto> response = authService.signIn(requestBody);
+        return response;
+    }
+
+    @PostMapping("find-tel")
+    public ResponseEntity<ResponseDto> findTelNumber(
+        @RequestBody @Valid FindTelNumberRequestDto requestBody
+    ) {
+        ResponseEntity<ResponseDto> response = authService.findTelNumber(requestBody);
+        return response;
+    }
+
+    @PostMapping("find-id")
+    public ResponseEntity<? super FindIdResponseDto> findUserId(
+        @RequestBody @Valid FindIdRequestDto requestBody
+    ) {
+        ResponseEntity<? super FindIdResponseDto> response = authService.findId(requestBody);
+        return response;
+    }
+
+    @PostMapping("id-tel-check")
+    public ResponseEntity<ResponseDto> idTelCheck(
+        @RequestBody @Valid IdTelNumberRequestDto requestBody
+    ) {
+        ResponseEntity<ResponseDto> response = authService.idTelNumberCheck(requestBody);
+        return response;
+    }
+
+    @PostMapping("find-password")
+    public ResponseEntity<? super FindPasswordResponseDto> findPassword(
+        @RequestBody @Valid FindPasswordRequestDto requestBody
+    ) { 
+        ResponseEntity<? super FindPasswordResponseDto> response = authService.findPassword(requestBody);
         return response;
     }
 }
