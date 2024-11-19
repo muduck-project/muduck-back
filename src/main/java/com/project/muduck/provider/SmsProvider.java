@@ -27,10 +27,12 @@ public class SmsProvider {
 
         public boolean sendMessage(String telNumber, String authNumber) {
 
-            Message message = new Message();
+            Message message = new Message();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
             message.setFrom(from);
             message.setTo(telNumber);
-            message.setText("[muduck] 인증번호 [" + authNumber + "]를 입력해주세요.");
+            message.setText(authNumber.length() > 4 
+                ? "[Plogger] 임시 비밀번호 [" + authNumber + "]를 입력해주세요." 
+                : "[Plogger] 인증번호 [" + authNumber + "]를 입력해주세요.");
     
             SingleMessageSentResponse response = this.messageService.sendOne(new SingleMessageSendingRequest(message));
     
